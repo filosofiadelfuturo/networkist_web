@@ -29,6 +29,7 @@
     .timeline {
       position: relative;
       padding: 2rem 0;
+      width: 100%;
     }
 
     .timeline::before {
@@ -62,7 +63,6 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       position: relative;
       transition: all 0.9s ease;
-      margin: 0 -20px;
       cursor: pointer;
     }
 
@@ -244,13 +244,6 @@
         @media screen and (max-width: 768px) {
         .timeline-content {
             -webkit-tap-highlight-color: transparent;
-        }
-        
-        /* Ensure container is scrollable */
-        .container {
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-        }
         }
   </style>
 </head>
