@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* Existing styles */
     body {
       font-family: system-ui, -apple-system, sans-serif;
       background: #f0f2f5;
       margin: 0;
-      padding: 2rem;
+      padding: 1rem;
       color: #1a1a1a;
     }
 
     .container {
       max-width: 800px;
       margin: 0 auto;
+      padding: 0 1rem;
     }
 
     h1 {
       text-align: center;
       color: #2d3748;
-      margin-bottom: 3rem;
-      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      font-size: 2rem;
     }
 
     .timeline {
@@ -65,29 +66,7 @@
 
     .timeline-content:hover {
       background: #f0f7ff;
-      transform: scale(1.05);
-    }
-
-    .timeline-item:nth-child(odd) .timeline-content::after {
-      content: '';
-      position: absolute;
-      right: -18px;
-      top: 50%;
-      transform: translateY(-50%);
-      border-width: 15px 0 15px 15px;
-      border-style: solid;
-      border-color: transparent transparent transparent white;
-    }
-
-    .timeline-item:nth-child(even) .timeline-content::after {
-      content: '';
-      position: absolute;
-      left: -18px;
-      top: 50%;
-      transform: translateY(-50%);
-      border-width: 15px 15px 15px 0;
-      border-style: solid;
-      border-color: transparent white transparent transparent;
+      transform: scale(1.02);
     }
 
     .date {
@@ -111,10 +90,6 @@
       margin-bottom: 0.5rem;
     }
 
-    .milestone li:last-child {
-      margin-bottom: 0;
-    }
-
     .dot {
       width: 20px;
       height: 20px;
@@ -127,29 +102,27 @@
       box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
     }
 
-    /* Styles for additional info */
-/* Add these new styles */
     .additional-info {
-        opacity: 0;
-        max-height: 0;
-        margin-top: 0;
-        padding-top: 0;
-        overflow: hidden;
-        transition: all 1s ease;
+      opacity: 0;
+      max-height: 0;
+      margin-top: 0;
+      padding-top: 0;
+      overflow: hidden;
+      transition: all 0.5s ease;
     }
 
     .timeline-content:hover .additional-info {
-        opacity: 1;
-        max-height: 300px;
-        margin-top: 1rem;
-        padding-top: 1rem;
-        border-top: 1px solid #3b82f6;
+      opacity: 1;
+      max-height: 300px;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #3b82f6;
     }
 
     .additional-info ul {
-        margin: 0;
-        padding-left: 1.2rem;
-        list-style-type: disc;
+      margin: 0;
+      padding-left: 1.2rem;
+      list-style-type: disc;
     }
 
     .additional-info li {
@@ -163,8 +136,69 @@
       text-decoration: underline;
     }
 
-    .additional-info a:hover {
-      color: #2563eb;
+    /* Mobile Responsive Styles */
+    @media screen and (max-width: 768px) {
+      .container {
+        padding: 0 0.5rem;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .timeline::before {
+        left: 1rem;
+      }
+
+      .timeline-item {
+        justify-content: flex-end;
+        padding: 1.5rem 0;
+      }
+
+      .timeline-item:nth-child(odd) {
+        justify-content: flex-end;
+      }
+
+      .timeline-content {
+        width: calc(100% - 3rem);
+        margin-left: 2rem;
+      }
+
+      .dot {
+        left: 1rem;
+      }
+
+      .timeline-item:nth-child(odd) .timeline-content::after,
+      .timeline-item:nth-child(even) .timeline-content::after {
+        display: none;
+      }
+
+      .timeline-content:hover {
+        transform: scale(1.01);
+      }
+
+      .date {
+        font-size: 1.1rem;
+      }
+
+      .milestone {
+        font-size: 1rem;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      body {
+        padding: 0.5rem;
+      }
+
+      .timeline-content {
+        padding: 1rem;
+      }
+
+      .additional-info {
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
@@ -182,7 +216,6 @@
             </ul>
           </div>
           <div class="additional-info">
-            
             <p>El quinto tejido es la extensión escalable del reconocimiento.</p>
             <p>La <a href="http://txt.networkismo.com" target="_blank">teoría networkista</a> muestra cómo escalar el quinto tejido resolverá los grandes problemas económicos, emocionales y ambientales del presente.</p>
             <p>Podés encontrar un resumen breve <a href="https://filosofiadelfuturo.com/p/qu-es-el-networkismo" target="_blank">acá</a>.</p>
@@ -204,7 +237,6 @@
             <p>Al principio, los efectos de red jugarán en nuestra contra.</p>
             <p>Debemos apuntar a una necesidad de nicho de un grupo pequeño.</p>
             <p>Conviene seguir el principio de <a href="https://paulgraham.com/ds.html" target="_blank">hacer cosas no escalables</a>.</p>
-            
           </div>
         </div>
         <div class="dot"></div>
@@ -223,7 +255,7 @@
             <p>La descentralización de registros funciona por redundancia, computacionalmente costosa.</p>
             <p>La paralelización es necesaria para que los registros soporten transacciones en cantidad.</p>
             <p>Esta debe darse "abajo" y no "arriba" del protocolo de consenso para evitar una centralización peor del poder.</p>
-        </div>
+          </div>
         </div>
         <div class="dot"></div>
       </div>
@@ -242,8 +274,7 @@
             <p>La liga networkista se disolverá y disfrutaremos el mundo nuevo.</p>
           </div>
         </div>
-        <div class="dot">
-        </div>
+        <div class="dot"></div>
       </div>
     </div>
   </div>
