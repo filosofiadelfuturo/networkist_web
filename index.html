@@ -214,35 +214,44 @@
       }
     }
 
-    /* First, ensure touch events are handled properly */
     @media (hover: hover) and (pointer: fine) {
-    .timeline-content:hover .additional-info {
-        opacity: 1;
-        max-height: 300px;
-        margin-top: 1rem;
-        padding-top: 1rem;
-        border-top: 1px solid #3b82f6;
-    }
-    }
+        .timeline-content:hover .additional-info {
+            opacity: 1;
+            max-height: 300px;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #3b82f6;
+        }
+        }
 
-    /* Handle touch devices specifically */
-    @media (hover: none) and (pointer: coarse) {
-    .timeline-content.touched .additional-info {
-        opacity: 1;
-        max-height: 300px;
-        margin-top: 1rem;
-        padding-top: 1rem;
-        border-top: 1px solid #3b82f6;
-    }
-    }
+        @media (hover: none) and (pointer: coarse) {
+        .timeline-content.touched .additional-info {
+            opacity: 1;
+            max-height: 300px;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #3b82f6;
+        }
+        
+        /* Improve touch handling */
+        .timeline-content {
+            touch-action: pan-y pinch-zoom; /* Explicitly allow vertical scrolling and pinch zoom */
+            -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+        }
+        }
 
-    /* Add this to your existing mobile styles */
-    @media screen and (max-width: 768px) {
-    .timeline-content {
-        -webkit-tap-highlight-color: transparent;
-        touch-action: manipulation;
-    }
-    }
+        /* Add this to your existing mobile styles */
+        @media screen and (max-width: 768px) {
+        .timeline-content {
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Ensure container is scrollable */
+        .container {
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        }
   </style>
 </head>
 <body>
@@ -324,22 +333,36 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
     const timelineContents = document.querySelectorAll('.timeline-content');
+    let touchStartY = 0;
+    let touchEndY = 0;
+    const scrollThreshold = 10; // pixels of movement to consider it a scroll
     
     timelineContents.forEach(content => {
+        // Track where touch started
         content.addEventListener('touchstart', function(e) {
-        // Prevent default touch behavior
-        e.preventDefault();
+        touchStartY = e.touches[0].clientY;
+        }, { passive: true });
         
-        // Remove 'touched' class from all other items
-        timelineContents.forEach(item => {
+        // Track where touch ended
+        content.addEventListener('touchend', function(e) {
+        touchEndY = e.changedTouches[0].clientY;
+        
+        // Calculate vertical movement
+        const verticalMove = Math.abs(touchEndY - touchStartY);
+        
+        // If it's a tap (minimal vertical movement)
+        if (verticalMove < scrollThreshold) {
+            // Remove 'touched' class from all other items
+            timelineContents.forEach(item => {
             if (item !== content) {
-            item.classList.remove('touched');
+                item.classList.remove('touched');
             }
-        });
-        
-        // Toggle 'touched' class on the current item
-        content.classList.toggle('touched');
-        });
+            });
+            
+            // Toggle 'touched' class on the current item
+            content.classList.toggle('touched');
+        }
+        }, { passive: true });
     });
     });
   </script>
