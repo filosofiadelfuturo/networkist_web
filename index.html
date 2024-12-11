@@ -2,8 +2,6 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="favicon_filofut.png">
-
   <style>
     body {
       font-family: system-ui, -apple-system, sans-serif;
@@ -176,9 +174,20 @@
         display: none;
       }
 
-      .timeline-content:hover {
-        transform: scale(1.01);
-      }
+      /* Only change this selector in your CSS - replace the existing hover-only version */
+        .timeline-content:hover .additional-info,
+        .timeline-content:active .additional-info {
+        opacity: 1;
+        max-height: 300px;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid #3b82f6;
+        }
+
+        /* And optionally, add this to remove the default blue highlight on mobile taps */
+        .timeline-content {
+        -webkit-tap-highlight-color: transparent;
+        }
 
       .date {
         font-size: 1.1rem;
