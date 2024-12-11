@@ -213,6 +213,36 @@
         font-size: 0.9rem;
       }
     }
+
+    /* First, ensure touch events are handled properly */
+    @media (hover: hover) and (pointer: fine) {
+    .timeline-content:hover .additional-info {
+        opacity: 1;
+        max-height: 300px;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid #3b82f6;
+    }
+    }
+
+    /* Handle touch devices specifically */
+    @media (hover: none) and (pointer: coarse) {
+    .timeline-content.touched .additional-info {
+        opacity: 1;
+        max-height: 300px;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid #3b82f6;
+    }
+    }
+
+    /* Add this to your existing mobile styles */
+    @media screen and (max-width: 768px) {
+    .timeline-content {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+    }
   </style>
 </head>
 <body>
@@ -291,5 +321,27 @@
       </div>
     </div>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const timelineContents = document.querySelectorAll('.timeline-content');
+    
+    timelineContents.forEach(content => {
+        content.addEventListener('touchstart', function(e) {
+        // Prevent default touch behavior
+        e.preventDefault();
+        
+        // Remove 'touched' class from all other items
+        timelineContents.forEach(item => {
+            if (item !== content) {
+            item.classList.remove('touched');
+            }
+        });
+        
+        // Toggle 'touched' class on the current item
+        content.classList.toggle('touched');
+        });
+    });
+    });
+  </script>
 </body>
 </html>
