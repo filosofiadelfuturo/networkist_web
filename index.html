@@ -4,6 +4,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="favicon_filofut.png">
   <style>
+    .footer {
+      margin-top: 4rem;
+      padding: 2rem 1rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .footer-content {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    
+    .footer-links a {
+      color: #1e40af;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: #3b82f6;
+      text-decoration: underline;
+    }
+    
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    
+    .social-icons a {
+      color: #1e40af;
+      transition: color 0.3s ease;
+    }
+    
+    .social-icons a:hover {
+      color: #3b82f6;
+    }
+    
+    .social-icons svg {
+      width: 24px;
+      height: 24px;
+    }
+    
+    @media screen and (max-width: 640px) {
+      .footer-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+      
+      .footer {
+        margin-top: 2rem;
+        padding: 1.5rem 1rem;
+      }
+    }
+    </style>
+  <style>
     body {
       font-family: system-ui, -apple-system, sans-serif;
       background: #f0f2f5;
@@ -29,7 +98,6 @@
     .timeline {
       position: relative;
       padding: 2rem 0;
-      width: 100%;
     }
 
     .timeline::before {
@@ -63,6 +131,7 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       position: relative;
       transition: all 0.9s ease;
+      margin: 0 -20px;
       cursor: pointer;
     }
 
@@ -245,6 +314,13 @@
         .timeline-content {
             -webkit-tap-highlight-color: transparent;
         }
+        
+        /* Ensure container is scrollable */
+        .container {
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        }
   </style>
 </head>
 <body>
@@ -322,6 +398,36 @@
         <div class="dot"></div>
       </div>
     </div>
+    <div class="footer">
+        <div class="footer-content">
+          <div class="footer-links">
+            <a href="https://txt.networkismo.com" target="_blank">El paradigma de la red</a>
+            <a href="https://filosofiadelfuturo.com" target="_blank">Blog de Filosofía del futuro</a>
+            <a href="https://filosofiadelfuturo.com/subscribe" target="_blank">Nuestro newsletter</a>
+          </div>
+          <div class="social-icons">
+            <a href="https://www.instagram.com/filosofiafuturo/" target="_blank" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="https://youtube.com/c/FilosofíadelFuturo" target="_blank" aria-label="YouTube">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+              </svg>
+            </a>
+            <a href="https://x.com/filosofiafuturo" target="_blank" aria-label="Twitter">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4l11.733 16h4.267l-11.733-16z"></path>
+                <path d="M4 20l6.768-6.768m2.464-2.464L20 4"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
   </div>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
